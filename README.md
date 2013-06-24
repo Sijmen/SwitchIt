@@ -14,7 +14,7 @@ If you have an ANT connection, it is the antenna. To improve performance it shou
 * GND to pin 14 (GND)
 * OUT to pin 16
 
-The pin numbering is such as it is found at [a RPi Low-level peripherals wiki][src] or searching google for [raspberry pi pin layout][src2] .
+The pin numbering runs from 1 to 26, how this numbering runs can be found at [a RPi Low-level peripherals wiki][src] or by searching Google for [raspberry pi pin layout][src2] .
 
   [src]: http://elinux.org/RPi_Low-level_peripherals
   [src2]: https://www.google.nl/search?tbm=isch&q=raspberry+pi+pin+layout&oq=raspberry+pi+pin+layout
