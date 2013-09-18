@@ -52,10 +52,15 @@ In a folder you want to install the switch control
 //if you want to test if it works and if you wired everything correctly.
 - - - - -
 For kaku with current remote:
+
 	./testKaku.sh A P 1 16
+
 for kaku without remote, first plug in reciever and then do
+
 	./kaku.o A 1 on
+
 For the rest
+
 	./action.o 18 B on (dipchannel socket state)
 	./blokker.o 7 on (device state)
 	./elro.o 5 D on (systemcode socket state)
@@ -71,16 +76,19 @@ erica push the switchit folder (asuming admin-party on couchdb, otherwise edit .
 	cd ..
 
 Set in the section http_global_handlers in the couch config the following:
+
 	section: http_global_handlers
 	option: _nodejs
 	Value: {couch_httpd_proxy, handle_proxy_req, <<"http://127.0.0.1:8000">>}
 
 Set in the section os_daemons in the couch config the following:
+
 	section: os_daemons
 	option: nodejs_server
 	value: /usr/bin/nodejs /absolute/path/to/SwitchIt/server.js > /tmp/server.log
 
 The following line starts the nodejs server. This should be done by couchdb as an os_daemon after restart. 
+
 	nodejs server.js
 
 ## Only for IR
