@@ -46,8 +46,8 @@ function vAddButtons(aSwitches){
 					'<h3 data-id="'+sId+'">'+oSwitch.value.doc.name+'</h3>'+
 					'<p class="muted">'+oSwitch.key[0]+'</p>'+
 					'<p class="btn-group">'+
-						'<a href="#" class="btn btn-large btn-warning"><i class="icon-white icon-ok-circle"></i> On</a>'+
-						'<a href="#" class="btn btn-large btn-inverse"><i class="icon-white icon-ban-circle"></i> Off</a>'+
+						'<span class="btn btn-large btn-warning"><i class="icon-white icon-ok-circle"></i> On</span>'+
+						'<span class="btn btn-large btn-inverse"><i class="icon-white icon-ban-circle"></i> Off</span>'+
 					'</p>'+
 				'</div>';
 		}
@@ -57,8 +57,8 @@ function vAddButtons(aSwitches){
 					'<h3 data-id="'+sId+'">'+oSwitch.value.doc.name+'</h3>'+
 					'<p class="muted">'+oSwitch.key[0]+'</p>'+
 					'<p class="btn-group">'+
-						'<a href="#" class="btn btn-large btn-warning"><i class="icon-white icon-ok-circle"></i> On</a>'+
-						'<a href="#" class="btn btn-large btn-inverse"><i class="icon-white icon-ban-circle"></i> Off</a>'+
+						'<span class="btn btn-large btn-warning"><i class="icon-white icon-ok-circle"></i> On</span>'+
+						'<span class="btn btn-large btn-inverse"><i class="icon-white icon-ban-circle"></i> Off</span>'+
 					'</p>'+
 				'</div>'+
 			'</div>';
