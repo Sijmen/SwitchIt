@@ -1,6 +1,6 @@
 var idList = {};
 var allSwitches = {};
-var switchesView = '/switches/_design/switches/_view/switches';
+var switchesView = '/switchit/_design/switchit/_view/switches';
 
 function vPost(sState,oCaller){
 	var id = $(oCaller).parent().prevAll('h3').html();
