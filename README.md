@@ -84,8 +84,19 @@ cd switchit
 
 cd ..
 
-## Only for IR
+Set in the section http_global_handlers in the couch config the following:
+	section: http_global_handlers
+	option: _nodejs
+	Value: {couch_httpd_proxy, handle_proxy_req, <<"http://127.0.0.1:8000">>}
+
+Set in the section os_daemons in the couch config the following:
+	section: os_daemons
+	option: nodejs_server
+	value: /usr/bin/nodejs /absolute/path/to/SwitchIt/server.js > /tmp/server.log
+
+
 nodejs server.js
+## Only for IR
 // you need to create a daemon for nodejs server.js
 
 
