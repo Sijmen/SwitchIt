@@ -45,12 +45,11 @@ In a folder you want to install the switch control
 	Made all
 
 
-//making files executable for non-root users and preventing all users from editing the files.
+Making files executable for non-root users and preventing all users from editing the files.
 
 	sudo chown root *.o && sudo chmod =x *.o && sudo chmod +s *.o
 
-//if you want to test if it works and if you wired everything correctly.
-- - - - -
+If you want to test if it works and if you wired everything correctly.
 For kaku with current remote:
 
 	./testKaku.sh A P 1 16
@@ -64,7 +63,7 @@ For the rest
 	./action.o 18 B on (dipchannel socket state)
 	./blokker.o 7 on (device state)
 	./elro.o 5 D on (systemcode socket state)
-- - - - -
+
 
 	cd ..
 	chmod 777 erica
