@@ -42,13 +42,35 @@ cd wiringPi
 
 git clone git://github.com/Sijmen/switchit.git
 
+cd SwitchIt
+
 cd lights
 
 make rebuild
 
+	rm -f elro.o blokker.o action.o kaku.o
+	g++ -o kaku.o kaku.cpp -I/usr/local/include -L/usr/local/lib -lwiringPi
+	g++ -o action.o action.cpp -I/usr/local/include -L/usr/local/lib -lwiringPi
+	g++ -o blokker.o blokker.cpp -I/usr/local/include -L/usr/local/lib -lwiringPi
+	g++  -o elro.o elro.cpp -I/usr/local/include -L/usr/local/lib -lwiringPi
+	Made all
+
+
 //making files executable for non-root users and preventing all users from editing the files.
 
 sudo chown root *.o && sudo chmod =x *.o && sudo chmod +s *.o
+
+//if you want to test if it works and if you wired everything correctly.
+-----
+For kaku with current remote:
+./testKaku.sh A P 1 16
+for kaku without remote, first plug in reciever and then do
+./kaku.o A 1 on
+For the rest
+./action.o 18 B on (dipchannel socket state)
+./blokker.o 7 on (device state)
+./elro.o 5 D on (systemcode socket state)
+-----
 
 cd ..
 
