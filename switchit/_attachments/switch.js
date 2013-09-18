@@ -20,10 +20,11 @@ function vPost(sState,oCaller){
 $(function(){
 	$.getJSON(switchesView,function(data){
 		$.each(data.rows,function(key,_switch){
-			idList[_switch.id] = _switch.value;
+			idList[_switch.id] = _switch.value.idlist;
 			allSwitches[_switch.id] = _switch;
 		});
 		vAddButtons(allSwitches);
+		console.log(allSwitches);
 		$('.btn-warning').on('click',function(){
 			vPost('on',this);
 		});
@@ -41,7 +42,7 @@ function vAddButtons(aSwitches){
 			sResult +=
 			'<div class="row">'+
 				'<div class="block span4 offset2 text-center" >'+
-					'<h3>'+sId+'</h3>'+
+					'<h3>'+oSwitch.value.doc.name+'</h3>'+
 					'<p class="muted">'+oSwitch.key[0]+'</p>'+
 					'<p class="btn-group">'+
 						'<a href="#" class="btn btn-large btn-warning"><i class="icon-white icon-ok-circle"></i> On</a>'+
