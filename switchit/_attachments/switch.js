@@ -3,7 +3,7 @@ var allSwitches = {};
 var switchesView = '/switchit/_design/switchit/_view/switches';
 
 function vPost(sState,oCaller){
-	var id = $(oCaller).parent().prevAll('h3').html();
+	var id = $(oCaller).parent().prevAll('h3[data-id]').data('id');
 	oData = {
 		ids:idList[id],
 		state:sState
@@ -39,10 +39,11 @@ function vAddButtons(aSwitches){
 	var sResult = '';
 	$.each(aSwitches,function(sId,oSwitch){
 		if(iCounter % 2 === 0){
+
 			sResult +=
 			'<div class="row">'+
 				'<div class="block span4 offset2 text-center" >'+
-					'<h3>'+oSwitch.value.doc.name+'</h3>'+
+					'<h3 data-id="'+sId+'">'+oSwitch.value.doc.name+'</h3>'+
 					'<p class="muted">'+oSwitch.key[0]+'</p>'+
 					'<p class="btn-group">'+
 						'<a href="#" class="btn btn-large btn-warning"><i class="icon-white icon-ok-circle"></i> On</a>'+
@@ -53,7 +54,7 @@ function vAddButtons(aSwitches){
 		else{
 			sResult +=
 				'<div class="block span4 text-center" >'+
-					'<h3>'+sId+'</h3>'+
+					'<h3 data-id="'+sId+'">'+oSwitch.value.doc.name+'</h3>'+
 					'<p class="muted">'+oSwitch.key[0]+'</p>'+
 					'<p class="btn-group">'+
 						'<a href="#" class="btn btn-large btn-warning"><i class="icon-white icon-ok-circle"></i> On</a>'+
