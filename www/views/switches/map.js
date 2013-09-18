@@ -3,5 +3,5 @@ function(doc){
 		if(doc.type.indexOf('group') == -1)
 			emit([doc.type,doc._id],[doc._id]);
 		else
-			emit([doc.type,doc._id],doc.list);
+			emit([doc.type,doc._id],doc.list) ;
 }

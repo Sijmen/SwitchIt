@@ -10,7 +10,7 @@ function vPost(sState,oCaller){
 	};
 	console.log(oData);
 	$.post('/_nodejs',JSON.stringify(oData),function(data){
-//		console.log('result:');
+//		console.log('result:') ;
 		// console.log(data);
 	});
 }
