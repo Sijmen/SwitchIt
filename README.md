@@ -74,14 +74,17 @@ For the rest
 
 cd ..
 
-cd www
+chmod 777 erica
 
-// erica push the www folder (asuming admin-party on couchdb, otherwise edit .couchapprc to http://adminname:adminpass@localhost/etc...)
+cd switchit
 
-erica push
+// erica push the switchit folder (asuming admin-party on couchdb, otherwise edit .couchapprc to http://adminname:adminpass@localhost/etc...)
+
+../erica push
 
 cd ..
 
+//only for IR
 nodejs server.js
 
 
