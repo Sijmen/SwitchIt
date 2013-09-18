@@ -84,11 +84,11 @@ cd switchit
 
 cd ..
 
-//only for IR
+## Only for IR
 nodejs server.js
+// you need to create a daemon for nodejs server.js
 
 
 
 //... not finished yet! might be missing stuff.
 
-// you need to create a daemon for nodejs server.js
