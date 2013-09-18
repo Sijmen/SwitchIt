@@ -92,5 +92,5 @@ The following line starts the nodejs server. This should be done by couchdb as a
 
 ## Only for IR
 
-//... not finished yet! might be missing stuff.
+... not finished yet! might be missing stuff.
 
