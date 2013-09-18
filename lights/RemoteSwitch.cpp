@@ -130,7 +130,7 @@ bool RemoteSwitch::isSameCode(unsigned long encodedTelegram, unsigned long recei
 * ElroSwitch
 ************/
 
-ElroSwitch::ElroSwitch(unsigned short pin, unsigned int periodusec) : RemoteSwitch(pin,periodusec,3) {
+ElroSwitch::ElroSwitch(unsigned short pin, unsigned int periodusec) : RemoteSwitch(pin,periodusec,1) {
 	//Call contructor
 }
 
@@ -169,7 +169,7 @@ unsigned long ElroSwitch::getTelegram(unsigned short systemCode, char device, bo
 * ActionSwitch
 ************/
 
-ActionSwitch::ActionSwitch(unsigned short pin, unsigned int periodusec) : RemoteSwitch(pin,periodusec,3) {
+ActionSwitch::ActionSwitch(unsigned short pin, unsigned int periodusec) : RemoteSwitch(pin,periodusec,1) {
 	//Call contructor
 }
 
@@ -203,7 +203,7 @@ unsigned long ActionSwitch::getTelegram(unsigned short systemCode, char device, 
 * BlokkerSwitch
 ************/
 
-BlokkerSwitch::BlokkerSwitch(unsigned short pin, unsigned int periodusec) : RemoteSwitch(pin,periodusec,3) {
+BlokkerSwitch::BlokkerSwitch(unsigned short pin, unsigned int periodusec) : RemoteSwitch(pin,periodusec,1) {
 	//Call contructor
 }
 
@@ -233,7 +233,7 @@ unsigned long BlokkerSwitch::getTelegram(unsigned short device, bool on) {
 * KaKuSwitch
 ************/
 
-KaKuSwitch::KaKuSwitch(unsigned short pin, unsigned int periodusec) : RemoteSwitch(pin,periodusec,3) {
+KaKuSwitch::KaKuSwitch(unsigned short pin, unsigned int periodusec) : RemoteSwitch(pin,periodusec,1) {
 	//Call contructor
 }
 
