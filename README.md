@@ -3,7 +3,7 @@
 This project aims to automate your home. Well, at least your power sockets. You will need to buy the hardware yourself, but the software to control it is available here. I'm based in the Netherlands and thus all brands supported right now are Dutch. But these brands are probably just rebrands of the product that comes out of a Chinese factory so it might work with your switch as well. 
 
 ## What do i get?
-Once you installed the software correctly. You will have a web interface, which is desktop/tablet/mobile friendly. On this interface you can switch on/off a switch. You can name the switch any name you like. It is also possible to create groups and mix different brands together in one group. In the future there will be a possibility to create Moods, turning on some lights and turning off others to create a nice atmosphere in the house. 
+Once you installed the software correctly you will have a web interface, which is desktop/tablet/mobile friendly. On this interface you can switch on/off a switch. You can name the switch any name you like. It is also possible to create groups and mix different brands together in one group. In the future there will be a possibility to create Moods, turning on some lights and turning off others to create a nice atmosphere in the house. 
 
 ## What do i need?
 You will need a 
