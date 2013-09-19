@@ -8,7 +8,7 @@ Once you installed the software correctly. You will have a web interface, which 
 ## What do i need?
 You will need a 
 * $35 [Raspberry Pi](http://www.raspberrypi.org/) B rev 2
-* One 433-434MHz RF-transmitter 
+* One [433-434MHz RF-transmitter](http://www.ebay.com/sch/i.html?_nkw=433Mhz+rf+transmitter&LH_BIN=1) 
 * Cables to connect your RF-transmitter to the Raspberry Pi. Using female/female [jumper wires](https://www.google.com/search?q=jumper+wires) may be and easy solution that eliminates the needs for soldering. 
 * Switches/sockets that can be remotely controlled with an RF remote. [Google](https://www.google.com/search?q=rf+controlled+socket)
 
