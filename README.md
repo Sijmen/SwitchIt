@@ -9,7 +9,7 @@ Once you installed the software correctly. You will have a web interface, which 
 You will need a 
 * $35 Raspberry Pi B rev 2
 * One 433-434MHz RF-transmitter 
-* Cables to connect your RF-transmitter to the Raspberry Pi. Using [jumper wires](https://www.google.com/search?q=jumper+wires) may be and easy solution that eliminates the needs for soldering. 
+* Cables to connect your RF-transmitter to the Raspberry Pi. Using female/female [jumper wires](https://www.google.com/search?q=jumper+wires) may be and easy solution that eliminates the needs for soldering. 
 * Switches/sockets that can be remotely controlled with an RF remote. [Google](https://www.google.com/search?q=rf+controlled+socket)
 
 ## I want it! How do i get started?
