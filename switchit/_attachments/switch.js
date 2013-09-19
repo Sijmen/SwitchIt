@@ -61,7 +61,7 @@ $(function(){
 function sGetButtonCode(oSwitch){
 	switch(oSwitch.key[0]){
 		case 'mood'
-			return '<span class="btn btn-large btn-warning turn-on"><i class="icon-white icon-ok-circle"></i> Set the mood</span>'
+			return '<span class="btn btn-large btn-warning set-mood"><i class="icon-white icon-ok-circle"></i> Set the mood</span>'
 		default:
 			return 	'<span class="btn btn-large btn-warning turn-on"><i class="icon-white icon-ok-circle"></i> On</span>'+
 					'<span class="btn btn-large btn-inverse turn-off"><i class="icon-white icon-ban-circle"></i> Off</span>';		
