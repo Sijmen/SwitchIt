@@ -59,15 +59,15 @@ $(function(){
 	});
 });
 function sGetButtonCode(oSwitch){
-	if(oSwitch.value.doc.type.indexOf('mood') == -1){
-		return 	'<span class="btn btn-large btn-warning turn-on"><i class="icon-white icon-ok-circle"></i> On</span>'+
-				'<span class="btn btn-large btn-inverse turn-off"><i class="icon-white icon-ban-circle"></i> Off</span>';
+	switch(oSwitch.key[0]){
+		case 'mood'
+			return '<span class="btn btn-large btn-warning turn-on"><i class="icon-white icon-ok-circle"></i> Set the mood</span>'
+		default:
+			return 	'<span class="btn btn-large btn-warning turn-on"><i class="icon-white icon-ok-circle"></i> On</span>'+
+					'<span class="btn btn-large btn-inverse turn-off"><i class="icon-white icon-ban-circle"></i> Off</span>';		
 	}
-	else{
-		return '<span class="btn btn-large btn-warning turn-on"><i class="icon-white icon-ok-circle"></i> Set the mood</span>'
-	}
-
 }
+
 function vAddButtons(aSwitches){
 	var iCounter = 0;
 	var sResult = '';
