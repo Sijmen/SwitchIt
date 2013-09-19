@@ -25,8 +25,8 @@ function vSetMood(oCaller){
 	$.post('/_nodejs',JSON.stringify(oData));
 
 	oData = {
-		ids:idList[id]['off'];
-		state:'off';
+		ids:idList[id]['off'],
+		state:'off'
 	}
 	$.post('/_nodejs',JSON.stringify(oData));
 }
@@ -53,9 +53,9 @@ $(function(){
 			vPost('off',this);
 		});
 
-		$('.set-mood').on('click',function()){
+		$('.set-mood').on('click',function(){
 			vSetMood(this);
-		}
+		});
 	});
 });
 function sGetButtonCode(oSwitch){
