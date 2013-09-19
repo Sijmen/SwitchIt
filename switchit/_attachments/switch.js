@@ -25,8 +25,8 @@ function vSetMood(oCaller){
 	$.post('/_nodejs',JSON.stringify(oData));
 
 	oData = {
-		ids:idList[id]['off'];
-		state:'off';
+		ids:idList[id]['off'],
+		state:'off'
 	}
 	$.post('/_nodejs',JSON.stringify(oData));
 }
@@ -53,14 +53,14 @@ $(function(){
 			vPost('off',this);
 		});
 
-		$('.set-mood').on('click',function()){
+		$('.set-mood').on('click',function(){
 			vSetMood(this);
-		}
+		});
 	});
 });
 function sGetButtonCode(oSwitch){
 	switch(oSwitch.key[0]){
-		case 'mood'
+		case 'mood':
 			return '<span class="btn btn-large btn-warning turn-on"><i class="icon-white icon-ok-circle"></i> Set the mood</span>'
 		default:
 			return 	'<span class="btn btn-large btn-warning turn-on"><i class="icon-white icon-ok-circle"></i> On</span>'+
