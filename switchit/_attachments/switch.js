@@ -8,11 +8,7 @@ function vPost(sState,oCaller){
 		ids:idList[id],
 		state:sState
 	};
-	console.log(oData);
-	$.post('/_nodejs',JSON.stringify(oData),function(data){
-//		console.log('result:') ;
-		// console.log(data);
-	});
+	$.post('/_nodejs',JSON.stringify(oData));
 }
 
 function vSetMood(oCaller){
@@ -21,7 +17,6 @@ function vSetMood(oCaller){
 		ids:idList[id]['on'],
 		state:'on'
 	};
-	// console.log(oData);
 	$.post('/_nodejs',JSON.stringify(oData));
 
 	oData = {
@@ -36,16 +31,15 @@ function vSetMood(oCaller){
 $(function(){
 	$.getJSON(switchesView,function(data){
 		$.each(data.rows,function(key,_switch){
-			if(key[0] == 'mood'){
-				idlist[_switch.id]['on'] = _switch.value.idlist_on
-				idlist[_switch.id]['off'] = _switch.value.idlist_off
+			if(_switch.key[0] == 'mood'){
+				idList[_switch.id]['on'] = _switch.value.idlist_on
+				idList[_switch.id]['off'] = _switch.value.idlist_off
 			}
 			else
 				idList[_switch.id] = _switch.value.idlist;
 			allSwitches[_switch.id] = _switch;
 		});
 		vAddButtons(allSwitches);
-		// console.log(allSwitches);
 		$('.turn-on').on('click',function(){
 			vPost('on',this);
 		});
