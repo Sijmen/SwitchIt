@@ -40,7 +40,17 @@
   "name":"Entertainment",
   "doctype":"switch",
   "type":"group",
-  "list":["tv","muziek"]
+  "on":["tv","muziek"]
+}
+
+//Database entries for group switches
+{
+  "_id":"media",
+  "name":"Entertainment",
+  "doctype":"switch",
+  "type":"group",
+  "on":["tv","muziek"],
+  "off":["huiskamer","badkamer"]
 }
 
 //sending to NodeJS server
