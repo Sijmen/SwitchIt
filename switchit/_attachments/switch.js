@@ -32,6 +32,7 @@ $(function(){
 	$.getJSON(switchesView,function(data){
 		$.each(data.rows,function(key,_switch){
 			if(_switch.key[0] == 'mood'){
+				idList[_switch.id] = {};
 				idList[_switch.id]['on'] = _switch.value.idlist_on
 				idList[_switch.id]['off'] = _switch.value.idlist_off
 			}
