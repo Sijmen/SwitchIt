@@ -1,18 +1,13 @@
 # Home automation with a Raspberry Pi B rev2
 ## Connecting the RF transmitter
-Connect a RF tranmitter with a frequency of 433MHz or 434MHz with its:
+Connect a RF transmitter with a frequency of 433MHz or 434MHz with its:
 
 * Vcc to pin 4 (Vcc 5V)
 * GND to pin 6 (GND)
 * Data to pin 8 (TX)
 
-If you have an ANT connection, it is the antenna. To improve performance it should be connected to a wire of around 10cm.
+If you have an ANT connection, it is the antenna. To improve performance it should be connected to a wire of around 17cm.
 
-## Connecting the IR receiver
-
-* VCC to pin 1 (3.3V)
-* GND to pin 14 (GND)
-* OUT to pin 16
 
 The pin numbering runs from 1 to 26, how this numbering runs can be found at [a RPi Low-level peripherals wiki][src] or by searching Google for [raspberry pi pin layout][src2] .
 
@@ -50,11 +45,11 @@ Making files executable for non-root users and preventing all users from editing
 	sudo chown root *.o && sudo chmod =x *.o && sudo chmod +s *.o
 
 If you want to test if it works and if you wired everything correctly.
-For kaku with current remote:
+For KAKU with current remote:
 
 	./testKaku.sh A P 1 16
 
-for kaku without remote, first plug in reciever and then do
+For KAKU without remote, first plug in receiver and then do
 
 	./kaku.o A 1 on
 
@@ -69,10 +64,9 @@ For the rest
 	chmod 777 erica
 	cd switchit
 
-erica push the switchit folder (asuming admin-party on couchdb, otherwise edit .couchapprc to http://adminname:adminpass@localhost/etc...)
+Erica push the switchit folder (assuming admin-party on couchdb, otherwise edit .couchapprc to http://adminname:adminpass@localhost/etc...)
 
 	../erica push
-	cd ..
 
 Set in the section http_global_handlers in the couch config the following:
 
@@ -88,9 +82,18 @@ Set in the section os_daemons in the couch config the following:
 
 The following line starts the nodejs server. This should be done by couchdb as an os_daemon after restart. 
 
+	cd ..
 	nodejs server.js
+
+See [examples.json][examples] for examples of what to put in the database. 
+  [examples]: https://github.com/Sijmen/SwitchIt/blob/master/examples.json
 
 ## Only for IR
 
+## Connecting the IR receiver
+
+* VCC to pin 1 (3.3V)
+* GND to pin 14 (GND)
+* OUT to pin 16
 ... not finished yet! might be missing stuff.
 

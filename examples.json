@@ -1,14 +1,16 @@
 //database entries for single switches
 {
   "_id":"huiskamer",
+  "name":"Huiskamer",
   "type":"action",
   "dip": 18,
-  "channel":B,
+  "channel":"B",
   "doctype":"switch"
 }
 
 {
   "_id":"badkamer",
+  "name":"Badkamer",
   "type":"elro",
   "code":5,
   "socket":"D",
@@ -17,6 +19,7 @@
 
 {
   "_id":"muziek",
+  "name":"Muziek",
   "type":"kaku",
   "address":"D",
   "device":10,
@@ -25,6 +28,7 @@
 
 {
   "_id":"tv",
+  "name":"TV",
   "type": "blokker",
   "device":7,
   "doctype":"switch"
@@ -32,7 +36,8 @@
 
 //Database entries for group switches
 {
-  "_id":"Entertainment",
+  "_id":"media",
+  "name":"Entertainment",
   "doctype":"switch",
   "type":"group",
   "list":["tv","muziek"]
