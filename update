@@ -1,0 +1,4 @@
+#!/bin/bash
+git pull
+cd switchit
+../erica push
