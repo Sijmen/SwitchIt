@@ -6,7 +6,7 @@ function(doc){
 		toSend.idlist = [];
 		toSend.idlist_off = [];
 		
-		if(doc.type.indexOf('group') == -1)
+		if(doc.type.indexOf('group') == -1 && doc.type.indexOf('mood') == -1)
 			toSend.idlist = [doc._id];
 		else if(doc.type.indexOf('mood') == -1)
 			toSend.idlist = doc.on;
