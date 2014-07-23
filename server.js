@@ -44,7 +44,7 @@ function vGetRequest(aKeys,sState){
   console.log(sState);
   var getRequestOptions = {
     hostname:'localhost',
-    port:8080,
+    port:5984,
     path:'/switchit/_all_docs?include_docs=true',
     method:'POST',
     headers:{'Content-Type':'application/json'}
