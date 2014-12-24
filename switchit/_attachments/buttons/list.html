@@ -1,10 +1,13 @@
 <div class="row" ng-repeat="row in rows">
-  <div class="block col-sm-4 text-center" ng-repeat="switch in row | filter:search | orderBy:'value.doc.name'">
-    <h3>{{switch.value.doc.name}}</h3>
-    <p class="muted">{{switch.value.doc.type}}</p>
-    <p class="btn-group">
-      <a class="btn btn-large btn-success" ng-click="turnOn(switch.value)"><i class="icon-white icon-ok-circle"></i> On</a>
-      <a class="btn btn-large btn-info" ng-click="turnOff(switch.value)"><i class="icon-white icon-ban-circle"></i> Off</a>
-    </p>
+  <div class="col-sm-4 text-center" ng-repeat="switch in row | filter:search | orderBy:'value.doc.name'">
+    <div class="block">
+      <div class="top_right"><a href="#/edit/{{switch.id}}"><i class="fa fa-cogs"></i></a></div>
+      <h3>{{switch.value.doc.name}}</h3>
+      <p class="muted">{{switch.value.doc.description}}</p>
+      <p class="btn-group">
+        <a class="btn btn-large btn-success" ng-click="turnOn(switch.value)"><i class="icon-white icon-ok-circle"></i> On</a>
+        <a class="btn btn-large btn-info" ng-click="turnOff(switch.value)"><i class="icon-white icon-ban-circle"></i> Off</a>
+      </p>
+    </div>
   </div>
 </div>

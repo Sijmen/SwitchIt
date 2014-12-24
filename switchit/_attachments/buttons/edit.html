@@ -1,24 +1,100 @@
-<form name="myForm">
-  <div class="control-group" ng-class="{error: myForm.name.$invalid && !myForm.name.$pristine}">
-    <label>Name</label>
-    <input type="text" name="name" ng-model="project.name" required>
-    <span ng-show="myForm.name.$error.required && !myForm.name.$pristine" class="help-inline">Required {{myForm.name.$pristine}}</span>
-  </div>
+<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12">
+  <form name="myForm" class="block block-padd form-horizontal">
+    <div class="control-group form-group" ng-show="!switchit._id || myForm.id.$dirty" ng-class="{'has-error': myForm.id.$invalid && myForm.id.$dirty, 'has-success': myForm.id.$valid && myForm.id.$dirty}">
+      <label class="col-sm-4 control-label">ID</label>
+      <div class="col-sm-8">
+        <input class="form-control" type="text" name="id" ng-model="switchit._id" required>
+      </div>
+      <span  class="col-sm-12 help-inline" ng-show="myForm.id.$error.required && myForm.id.$dirty">Required</span>
+    </div>
+    <div class="control-group form-group" ng-class="{'has-error': myForm.name.$invalid && myForm.name.$dirty, 'has-success': myForm.name.$valid && myForm.name.$dirty}">
+      <label class="col-sm-4 control-label">Name</label>
+      <div class="col-sm-8">
+        <input class="form-control" type="text" name="name" ng-model="switchit.name" required>
+      </div>
+      <span  class="col-sm-12 help-inline" ng-show="myForm.name.$error.required && myForm.name.$dirty">Required</span>
+    </div>
+    <!-- Select switch model -->
+    <div class="control-group form-group" ng-class="{'has-success': myForm.modelType.$dirty}">
+      <label  class="col-sm-4 control-label">Model </label>
+      <div class="col-sm-8">
 
-  <div class="control-group" ng-class="{error: myForm.site.$invalid && !myForm.site.$pristine}">
-    <label>Website</label>
-    <input type="url" name="site" ng-model="project.site" required>
-    <span ng-show="myForm.site.$error.required && !myForm.site.$pristine" class="help-inline">Required</span>
-    <span ng-show="myForm.site.$error.url" class="help-inline">Not a URL</span>
-  </div>
+        <select class="form-control" ng-model="switchit.type" name="modelType" required ng-options="key as value for (key , value) in models"></select>
+      </div>
+    </div>
 
-  <label>Description</label>
-  <textarea name="description" ng-model="project.description"></textarea>
+    <div class="action-data" ng-if="switchit.type == 'action'">
+      <div class="control-group form-group" ng-class="{'has-error': myForm.dip.$invalid && myForm.dip.$dirty}">
+        <label class="col-sm-4 control-label" for="dip" >DIP</label>
+        <div class="col-sm-8">
+          <input class="form-control" type="number" ng-model="switchit.dip" id="dip" name="dip">
+        </div>
+      </div>
+      <div class="control-group form-group" ng-class="{'has-error': myForm.channel.$invalid && myForm.channel.$dirty}">
+        <label class="col-sm-4 control-label" for="channel" >Channel</label>
+        <div class="col-sm-8">
+          <input class="form-control" id="channel" name="channel" size="1" ng-model="switchit.channel" type="text">
+        </div>
+      </div>
+    </div>
 
-  <br>
-  <a href="#/" class="btn">Cancel</a>
-  <button ng-click="save()" ng-disabled="myForm.$invalid"
-        class="btn btn-primary">Save</button>
-  <button ng-click="destroy()"
-        ng-show="project.$id" class="btn btn-danger">Delete</button>
-</form>
+    <div class="blokker-data" ng-if="switchit.type == 'blokker'">
+      <div class="control-group form-group" ng-class="{'has-error': myForm.device.$invalid && myForm.device.$dirty}">
+        <label class="col-sm-4 control-label" for="device" >device</label>
+        <div class="col-sm-8">
+          <input class="form-control" type="number" ng-model="switchit.device" id="device" name="device">
+        </div>
+      </div>
+    </div>
+
+    <div class="elro-data" ng-if="switchit.type == 'elro'">
+      <div class="control-group form-group" ng-class="{'has-error': myForm.code.$invalid && myForm.code.$dirty}">
+        <label class="col-sm-4 control-label" for="code" >Code</label>
+        <div class="col-sm-8">
+          <input class="form-control" id="code" name="code" type="number" ng-model="switchit.code">
+        </div>
+      </div>
+      <div class="control-group form-group" ng-class="{'has-error': myForm.socket.$invalid && myForm.socket.$dirty}">
+        <label class="col-sm-4 control-label" for="socket" >Socket</label>
+        <div class="col-sm-8">
+          <input class="form-control" id="socket" name="socket" size="1" type="text" ng-model="switchit.socket">
+        </div>
+      </div>
+    </div>
+
+    <div class="kaku-data" ng-if="switchit.type == 'kaku'">
+      <div class="control-group form-group" ng-class="{'has-error': myForm.device.$invalid && myForm.device.$dirty, 'has-success': myForm.device.$valid && myForm.device.$dirty}">
+        <label class="col-sm-4 control-label" for="device" >Device</label>
+        <div class="col-sm-8">
+          <input class="form-control" type="number" ng-model="switchit.device" id="device" name="device" max="18" min="0" required>
+        </div>
+        <span ng-show="myForm.device.$error.required && myForm.device.$dirty" class="col-sm-12 help-inline">Required</span>
+        <span ng-show="(myForm.device.$error.max || myForm.device.$error.max)" class="col-sm-12 help-inline">Not between 0 and 18</span>
+      </div>
+      <div class="control-group form-group" ng-class="{'has-error': myForm.address.$invalid && myForm.address.$dirty, 'has-success': myForm.address.$valid && myForm.address.$dirty}">
+        <label class="col-sm-4 control-label" for="address" >Address</label>
+        <div class="col-sm-8">
+          <input class="form-control" id="address" name="address" size="1" ng-model="switchit.address" type="text" ng-pattern="/[A-Pa-p]/" required>
+        </div>
+        <span class="help-inline col-sm-12" ng-show="myForm.address.$error.required && myForm.address.$dirty" >Required</span>
+        <span class="help-inline col-sm-12" ng-show="myForm.address.$error.pattern  && myForm.address.$dirty" >Not between A and P</span>
+      </div>
+    </div>
+    <div class="form-group" ng-class="{'has-success': myForm.description.$dirty}">
+      <label class="col-sm-4 control-label" for="description">Description:</label>
+      <div class="col-sm-8">
+        <textarea class="form-control" id="description" name="description" ng-model="switchit.description"></textarea>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <div class="btn-group" role="group">
+        <a href="#/" class="btn btn-info">Cancel</a>
+        <button ng-click="save()" ng-disabled="myForm.$invalid"
+              class="btn btn-primary">Save</button>
+        <button ng-click="destroy()"
+              ng-show="switchit._id" class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+  </form>
+</div>
