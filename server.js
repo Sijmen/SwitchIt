@@ -16,7 +16,7 @@ http.createServer(function (req, res) {
       req.on('end',function(){
         res.writeHead(200,{'Content-Type':'application/json'});
         console.log(body);
-        res.end(JSON.stringify(oProcessRequest(JSON.parse(body))));  
+        res.end(JSON.stringify(oProcessRequest(JSON.parse(body))));
       });
     }
     else{
@@ -75,10 +75,10 @@ function vGetRequest(aKeys,sState){
 }
 
 var oExecutables = {};
-oExecutables.action = 'lights/action.o';
-oExecutables.elro = 'lights/elro.o';
-oExecutables.kaku = 'lights/kaku.o';
-oExecutables.blokker = 'lights/blokker.o';
+oExecutables.action = __dirname+'/lights/action.o';
+oExecutables.elro = __dirname+'/lights/elro.o';
+oExecutables.kaku = __dirname+'/lights/kaku.o';
+oExecutables.blokker = __dirname+'/lights/blokker.o';
 
 function sControlSwitch(oSwitch,sState){
   state = sState;
