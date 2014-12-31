@@ -28,6 +28,14 @@ angular.module('switch_angular', ['ngRoute','ngResource','CornerCouch'])
     };
 })
 
+.factory('SwitchTypes', function(){
+  return {
+    "switch":"Switch",
+    "group":"Group",
+    "mood":"Mood"
+  }
+})
+
 .config(function($routeProvider) {
   $routeProvider
     .when('/', {
@@ -69,7 +77,8 @@ angular.module('switch_angular', ['ngRoute','ngResource','CornerCouch'])
   };
 })
 
-.controller('CreateCtrl', function($scope, $location, Switches, SwitchModels) {
+.controller('CreateCtrl', function($scope, $location, Switches, SwitchModels, SwitchTypes) {
+  $scope.types = SwitchTypes;
   $scope.models = SwitchModels;
   // temp fix!! FIX?? Default type is always switch. But would be nicer to create
   // a model for it.
@@ -86,7 +95,8 @@ angular.module('switch_angular', ['ngRoute','ngResource','CornerCouch'])
 })
 
 .controller('EditCtrl',
-  function($scope, $location, $routeParams, cornercouch, dgName, vwName, dbName, SwitchModels) {
+  function($scope, $location, $routeParams, cornercouch, dgName, vwName, dbName, SwitchModels, SwitchTypes) {
+    $scope.types = SwitchTypes;
     var switchId = $routeParams.switchId;
     server = cornercouch();
     db = server.getDB(dbName);

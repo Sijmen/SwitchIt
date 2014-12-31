@@ -15,7 +15,6 @@ http.createServer(function (req, res) {
       });
       req.on('end',function(){
         res.writeHead(200,{'Content-Type':'application/json'});
-        console.log(body);
         res.end(JSON.stringify(oProcessRequest(JSON.parse(body))));
       });
     }
@@ -82,20 +81,21 @@ oExecutables.blokker = __dirname+'/lights/blokker.o';
 
 function sControlSwitch(oSwitch,sState){
   state = sState;
-
-  switch(oSwitch.type){
+  sResult = '';
+  switch(oSwitch.brand){
     case 'action':
-      return (oExecutables.action+' '+oSwitch.dip+' '+oSwitch.channel+' '+state);
+      sResult = (oExecutables.action+' '+oSwitch.dip+' '+oSwitch.channel+' '+state);
       break;
     case 'elro':
-      return (oExecutables.elro+' '+oSwitch.code+' '+oSwitch.socket+' '+state);
+      sResult = (oExecutables.elro+' '+oSwitch.code+' '+oSwitch.socket+' '+state);
       break;
     case 'kaku':
-      return (oExecutables.kaku+' '+oSwitch.address+' '+oSwitch.device+' '+state);
+      sResult = (oExecutables.kaku+' '+oSwitch.address+' '+oSwitch.device+' '+state);
       break;
     case 'blokker':
-      return (oExecutables.blokker+' '+oSwitch.device+' '+state);
+      sResult = (oExecutables.blokker+' '+oSwitch.device+' '+state);
   }
+  return sResult;
 }
 
 function vSendCommand(sCommand){

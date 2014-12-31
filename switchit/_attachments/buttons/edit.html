@@ -1,12 +1,25 @@
 <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12">
   <form name="myForm" class="block block-padd form-horizontal">
-    <div class="control-group form-group" ng-show="!switchit._id || myForm.id.$dirty" ng-class="{'has-error': myForm.id.$invalid && myForm.id.$dirty, 'has-success': myForm.id.$valid && myForm.id.$dirty}">
+
+    <!-- Set switch type -->
+    <div class="control-group form-group" ng-class="{'has-success': myForm.modelType.$dirty}">
+      <label  class="col-sm-4 control-label">Type </label>
+      <div class="col-sm-8">
+
+        <select class="form-control" ng-model="switchit.type" name="modelType" required ng-options="key as value for (key , value) in types"></select>
+      </div>
+    </div>
+
+    <!-- Set switch ID -->
+    <div class="control-group form-group" ng-class="{'has-error': myForm.id.$invalid && myForm.id.$dirty, 'has-success': myForm.id.$valid && myForm.id.$dirty}">
       <label class="col-sm-4 control-label">ID</label>
       <div class="col-sm-8">
-        <input class="form-control" type="text" name="id" ng-model="switchit._id" required>
+        <input class="form-control" type="text" name="id" ng-model="switchit._id" required ng-disabled="switchit._id && myForm.id.$pristine">
       </div>
       <span  class="col-sm-12 help-inline" ng-show="myForm.id.$error.required && myForm.id.$dirty">Required</span>
     </div>
+
+    <!-- Set switch name -->
     <div class="control-group form-group" ng-class="{'has-error': myForm.name.$invalid && myForm.name.$dirty, 'has-success': myForm.name.$valid && myForm.name.$dirty}">
       <label class="col-sm-4 control-label">Name</label>
       <div class="col-sm-8">
@@ -14,16 +27,17 @@
       </div>
       <span  class="col-sm-12 help-inline" ng-show="myForm.name.$error.required && myForm.name.$dirty">Required</span>
     </div>
-    <!-- Select switch model -->
+
+    <!-- Select switch brand -->
     <div class="control-group form-group" ng-class="{'has-success': myForm.modelType.$dirty}">
-      <label  class="col-sm-4 control-label">Model </label>
+      <label  class="col-sm-4 control-label">Brand </label>
       <div class="col-sm-8">
 
-        <select class="form-control" ng-model="switchit.type" name="modelType" required ng-options="key as value for (key , value) in models"></select>
+        <select class="form-control" ng-model="switchit.brand" name="modelType" required ng-options="key as value for (key , value) in models"></select>
       </div>
     </div>
 
-    <div class="action-data" ng-if="switchit.type == 'action'">
+    <div class="action-data" ng-if="switchit.brand == 'action'">
       <div class="control-group form-group" ng-class="{'has-error': myForm.dip.$invalid && myForm.dip.$dirty}">
         <label class="col-sm-4 control-label" for="dip" >DIP</label>
         <div class="col-sm-8">
@@ -38,7 +52,7 @@
       </div>
     </div>
 
-    <div class="blokker-data" ng-if="switchit.type == 'blokker'">
+    <div class="blokker-data" ng-if="switchit.brand == 'blokker'">
       <div class="control-group form-group" ng-class="{'has-error': myForm.device.$invalid && myForm.device.$dirty}">
         <label class="col-sm-4 control-label" for="device" >device</label>
         <div class="col-sm-8">
@@ -47,7 +61,7 @@
       </div>
     </div>
 
-    <div class="elro-data" ng-if="switchit.type == 'elro'">
+    <div class="elro-data" ng-if="switchit.brand == 'elro'">
       <div class="control-group form-group" ng-class="{'has-error': myForm.code.$invalid && myForm.code.$dirty}">
         <label class="col-sm-4 control-label" for="code" >Code</label>
         <div class="col-sm-8">
@@ -62,7 +76,7 @@
       </div>
     </div>
 
-    <div class="kaku-data" ng-if="switchit.type == 'kaku'">
+    <div class="kaku-data" ng-if="switchit.brand == 'kaku'">
       <div class="control-group form-group" ng-class="{'has-error': myForm.device.$invalid && myForm.device.$dirty, 'has-success': myForm.device.$valid && myForm.device.$dirty}">
         <label class="col-sm-4 control-label" for="device" >Device</label>
         <div class="col-sm-8">
@@ -93,7 +107,7 @@
         <button ng-click="save()" ng-disabled="myForm.$invalid"
               class="btn btn-primary">Save</button>
         <button ng-click="destroy()"
-              ng-show="switchit._id" class="btn btn-danger">Delete</button>
+              ng-show="switchit._id && myForm.id.$pristine" class="btn btn-danger">Delete</button>
       </div>
     </div>
   </form>
