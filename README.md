@@ -17,3 +17,4 @@ If you have the hardware, copy and paste the following and the installation will
 ```
 wget https://raw.githubusercontent.com/Sijmen/SwitchIt/develop/install -O install && sh install
 ```
+Please follow the instructions on the screen.
