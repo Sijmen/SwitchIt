@@ -292,7 +292,6 @@ class CheckWiringPiConfig(BasicConfigChecks):
             self.progress(False, "Installed", "Wiring pi could not be found. Please install.", completed=0)
 
 
-
 class CheckSwitchCode(BasicConfigChecks):
     def __init__(self, progress_callback):
         super(CheckSwitchCode, self).__init__(progress_callback)
@@ -338,7 +337,7 @@ class CheckSwitchCode(BasicConfigChecks):
             if os.path.isfile(self.switchit_basedir()+"/switchit/.couchapprc"):
                 os.chdir(self.switchit_basedir()+"/switchit")
                 try:
-                    code = subprocess.Popen([erica, "push"])
+                    code = subprocess.call([erica, "push"])
                     if code == 0:
                         self.progress(True, "Installed", "The website has been successfully installed!")
                     else:
