@@ -1,2 +1,7 @@
-.min.js
-.min.css
+*.min.js
+*.min.css
+venv*
+__pycache__
+*.pyc
+*.dump
+*.pkl
