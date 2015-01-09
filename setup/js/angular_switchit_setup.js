@@ -3,13 +3,9 @@ angular.module('SwitchItSetup', [])
 	(function tick(){
 		if($scope.setup_started){
 			$http.get("/?update=True").then(function(resp) {
-
-				// $scope.time = resp.data.time;
 				$scope.data = resp.data.switchcode;
-				console.log(resp);
-			    // For JSON responses, resp.data contains the result
 			}, function(err) {
-				console.error('ERR', err);
+				$scope.no_data = true;
 		    // err.status will contain the status code
 			})
 		}

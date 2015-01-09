@@ -48,8 +48,8 @@
       <div class="col-md-12">
         <div ng-controller="CouchDBSetupCtrl">
           <div ng-show="setup_started">
-            <img src="/img/circle-loading-animation.gif" class="img img-responsive" ng-hide="data">
             <h2>CouchDB <small> - The database &amp; webserver</small></h2>
+            <img src="/img/circle-loading-animation.gif" class="img img-responsive" ng-hide="data">
             <p ng-show="data.Installed.message">
               <i ng-class="{'fa-check': data.Installed.success, 'text-success': data.Installed.success, 'fa-close': !data.Installed.success, 'text-danger': !data.Installed.success}" class="fa"></i>&nbsp; Installed <div class='text-muted text-indented'>{{data.Installed.message}}</div>
             </p>
@@ -92,8 +92,8 @@
       <div class="col-md-12">
         <div ng-controller="WiringPiSetupCtrl">
           <div ng-show="setup_started">
-          <img src="/img/circle-loading-animation.gif" class="img img-responsive" ng-hide="data">
             <h2>WiringPi <small> - The GPIO Controller</small></h2>
+            <img src="/img/circle-loading-animation.gif" class="img img-responsive" ng-hide="data">
             <p ng-show="data.Installed.message">
               <i ng-class="{'fa-check': data.Installed.success, 'text-success': data.Installed.success, 'fa-close': !data.Installed.success, 'text-danger': !data.Installed.success}" class="fa"></i>&nbsp; Installed <div class='text-muted text-indented'>{{data.Installed.message}}</div>
             </p>
@@ -106,8 +106,8 @@
       <div class="col-md-12">
         <div ng-controller="SwitchItSetupCtrl">
           <div ng-show="setup_started">
-            <img src="/img/circle-loading-animation.gif" class="img img-responsive" ng-hide="data">
             <h2>SwitchIt <small> - The website &amp; backend</small></h2>
+            <img src="/img/circle-loading-animation.gif" class="img img-responsive" ng-hide="data">
             <p ng-show="data.Permission.message">
               <i ng-class="{'fa-check': data.Permission.success, 'text-success': data.Permission.success, 'fa-close': !data.Permission.success, 'text-danger': !data.Permission.success}" class="fa"></i>&nbsp; Permission <div class='text-muted text-indented'>{{data.Permission.message}}</div>
             </p>
