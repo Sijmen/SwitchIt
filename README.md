@@ -13,4 +13,7 @@ You will need a
 * Switches/sockets that can be remotely controlled with an RF remote. [Google](https://www.google.com/search?q=rf+controlled+socket)
 
 ## I want it! How do I get started?
-If you have the hardware, [go to the wiki](https://github.com/Sijmen/SwitchIt/wiki) and follow the instructions.
+If you have the hardware, copy and paste the following and the installation will start automatically:
+```
+wget https://raw.githubusercontent.com/Sijmen/SwitchIt/develop/install -O install && sh install
+```
