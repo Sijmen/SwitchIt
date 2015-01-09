@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-resource.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-route.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet"></link>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/jumbotron-narrow.css" rel="stylesheet">
+    <link href="/css/setup.css" rel="stylesheet">
+    <script src="/js/angular_couchdb_setup.js"></script>
+    <script src="/js/angular_setup.js"></script>
+
+  </head>
+  <body ng-app="SwitchSetup" ng-controller="SetupCtrl">
+    <div class="container">
+      <div class="jumbotron">
+        <h1 ng-hide="setup_started">Welcome!</h1>
+        <h1 ng-show="setup_started">Thanks!</h1>
+        <p ng-hide="setup_started" class="lead">You are about to install a great application for your Raspberry Pi!</p>
+        <p ng-hide="setup_started"><a class="btn btn-lg btn-success" role="button" ng-click="start()">Start the installation!</a></p>
+        <p class="lead text-left" ng-show="setup_started">
+          You are installing a great application for your Raspberry Pi! The
+          installation has started and all components will be automatically
+          configured.
+        </p>
+
+        <div class="lead text-left" ng-show="setup_started">
+        <p>
+          It may happen that not everything can be configured
+          correctly. If this is the case you will either see:
+        </p>
+          <ul class="fa-ul">
+          <li><i class="fa fa-li fa-exclamation-triangle text-warning"></i>
+            You are required to take action on this page</li>
+          <li><i class="fa fa-li fa-close text-danger"></i>
+          The automatic setup cannot continue without interaction via
+          terminal or otherwise.</li>
+          </ul>
+          <h3><i class="fa fa-check text-success"></i> Enjoy!</h3>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div ng-controller="CouchDBSetupCtrl">
+          <div ng-show="setup_started">
+            <h2>CouchDB <small> - The database &amp; webserver</small></h2>
+            <p ng-show="data.Installed.message">
+              <i ng-class="{'fa-check': data.Installed.success, 'text-success': data.Installed.success, 'fa-close': !data.Installed.success, 'text-danger': !data.Installed.success}" class="fa"></i>&nbsp; Installed <div class='text-muted text-indented'>{{data.Installed.message}}</div>
+            </p>
+            <p ng-show="data.Admins.message">
+              <i ng-class="{'fa-check': data.Admins.status == 'done', 'text-success': data.Admins.status == 'done', 'fa-close': !data.Admins.status == 'error', 'text-danger': !data.Admins.status == 'error', 'text-warning': data.Admins.status == 'warning', 'fa-exclamation-triangle': data.Admins.status == 'warning'}" class="fa"></i>&nbsp; Admin access<div class='text-muted text-indented'>{{data.Admins.message}}</div>
+            </p>
+            <div ng-show="data.Admins.status == 'warning'">
+              <form class="form-inline" ng-submit="login()" ng-show="!login_status.success">
+                <div class="form-group">
+                  <label class="sr-only" for="name">Admin name</label>
+                  <input type="text" class="form-control" ng-model="couchdb.name" id="name" placeholder="Enter admin name" name="name" required>
+                </div>
+                <div class="form-group">
+                  <label class="sr-only" for="password">Password</label>
+                  <input type="password" class="form-control" id="password" ng-model="couchdb.password" placeholder="Password" name="password" required>
+                </div>
+                <input type="hidden" value="/_utils" name="next">
+                <button type="submit" class="btn btn-default">Sign in</button>
+              </form>
+              <div>{{login_status.message}}</div>
+            </div>
+<!--             <div ng-show="login_status.success" ng-hide="continued">
+              <button type="submit" class="btn btn-default" ng-click="continue()">Continue installation</button>
+            </div> -->
+            <p ng-show="data.default_configuration.message">
+              <i ng-class="{'fa-check': data.default_configuration.success, 'text-success': data.default_configuration.success, 'fa-close': !data.default_configuration.success, 'text-danger': !data.default_configuration.success}" class="fa"></i>&nbsp;Default configuration <div class='text-muted text-indented'>{{data.default_configuration.message}}</div>
+            </p>
+            <p ng-show="data.custom_configuration.message">
+            <i ng-class="{'fa-check': data.custom_configuration.success, 'text-success': data.custom_configuration.success, 'fa-close': !data.custom_configuration.success, 'text-danger': !data.custom_configuration.success}" class="fa"></i>&nbsp;Custom configuration <div ng-repeat="mesg in data.custom_configuration.message" class='text-muted text-indented'><i class="fa fa-exclamation" ng-hide="mesg.success"></i>{{mesg.message}}. </div>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
