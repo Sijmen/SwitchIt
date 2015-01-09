@@ -17,7 +17,7 @@ class BasicConfigChecks():
         """asume root rights with sudo"""
         return True
 
-    def switchit_basedir():
+    def switchit_basedir(self):
         current_dir = os.path.dirname(os.path.realpath(__file__))
         base_dir = os.path.dirname(current_dir)
         return base_dir
