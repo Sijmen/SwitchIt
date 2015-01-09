@@ -13,7 +13,7 @@ angular.module('SwitchItSetup', [])
 		    // err.status will contain the status code
 			})
 		}
-		$timeout(tick,2500);
+		$timeout(tick,2300);
 	})();
 })
 
