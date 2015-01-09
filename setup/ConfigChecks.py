@@ -24,7 +24,8 @@ class BasicConfigChecks():
 
     def program_exists(self, program_args):
         try:
-            subprocess.call(program_args, stdout=subprocess.DEVNULL)
+            with open(os.devnull, "w") as fnull:
+                subprocess.call(program_args, stdout=fnull)
         except OSError as e:
             if e.errno == os.errno.ENOENT:
                 return False
