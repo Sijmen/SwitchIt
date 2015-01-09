@@ -327,7 +327,7 @@ class CheckSwitchCode(BasicConfigChecks):
     def install(self):
         erica = self.switchit_basedir()+'/erica'
         if os.access(erica, os.X_OK):
-            if os.file.path.isfile(self.switchit_basedir()+"/switchit/.couchapprc"):
+            if os.path.isfile(self.switchit_basedir()+"/switchit/.couchapprc"):
                 os.chdir(self.switchit_basedir()+"/switchit")
                 try:
                     code = subprocess.Popen([erica, "push"])
