@@ -149,11 +149,11 @@ class CheckCouchDB(BasicConfigChecks):
         if self.bind_address != "0.0.0.0":
             # force write, because bind_address is always available
             if self.save_setting('httpd', 'bind_address', '0.0.0.0', session, force_write=True):
-                self.progress(True, part, "Succesfully configured bind address")
+                self.progress(True, part, "Successfully configured bind address")
             else:
                 self.progress(False, part, "Could not configure bind address", progress=0)
         else:
-            self.progress(True, part, "Succesfully configured bind address")
+            self.progress(True, part, "Successfully configured bind address")
 
         part = "custom_configuration"
         success = True
@@ -161,7 +161,7 @@ class CheckCouchDB(BasicConfigChecks):
         # assuming the nodejs server runs locally. Could be a remote location though
         if self.save_setting('http_global_handlers', '_nodejs', '{couch_httpd_proxy, handle_proxy_req, <<"http://127.0.0.1:8000">>}', session):
             success = success and True
-            messages.append({"message": "Succesfully configured global proxy handler for nodejs server", "success": True})
+            messages.append({"message": "Successfully configured global proxy handler for nodejs server", "success": True})
         else:
             success = False
             messages.append({"message": "Could not configure global http handler for nodejs proxy.", "success": False})
@@ -169,13 +169,22 @@ class CheckCouchDB(BasicConfigChecks):
         base_dir = self.switchit_basedir()
 
         # assuming 'nodejs' as name for the binary file,
-        # maybe 'node' is more appropiate. Or check
+        # maybe 'node' is more appropriate. Or check
         if self.save_setting('os_daemons', 'nodejs_server', '/usr/bin/nodejs %s/server.js' % base_dir, session):
             success = success and True
-            messages.append({"message": "Succesfully configured os daemon for nodejs server.", "success": True})
+            messages.append({"message": "Successfully configured os daemon for nodejs server.", "success": True})
         else:
             success = False
             messages.append({"message": "Could not configure os daemon for nodejs server.", "success": False})
+
+        if self.port:
+            self.write_couchapprc_file()
+            success = success and True
+            messages.append({"message": "Successfully created .couchapprc file", "success": True})
+        else:
+            success = False
+            messages.append({"message": "Port not available, thus could not create .couchapprc file", "success": False})
+
         completed = 100 if success else 0
         self.progress(success, part, messages, completed)
         self.reboot_couchdb(session)
@@ -246,6 +255,17 @@ class CheckCouchDB(BasicConfigChecks):
         result = requests.post("%s/_session" % self.get_url(), data={"name": self.admin, "password": self.adminpass})
         return result.ok
 
+    def write_couchapprc_file(self):
+        couchapprc = {
+            "env": {
+                "default": {
+                    "db": "%s/switchit" % self.get_url()
+                }
+            }
+        }
+        with open(self.switchit_basedir()+"/switchit/.couchapprc", "w") as fcouchapprc:
+            fcouchapprc.write(json.dumps(couchapprc))
+
 
 class CheckWiringPiConfig(BasicConfigChecks):
     def __init__(self, progress_callback):
@@ -297,3 +317,26 @@ class CheckSwitchCode(BasicConfigChecks):
             self.progress(True, "Permission", "File permissions for switches are correct")
         else:
             self.progress(False, "Permission", "Incorrect file permissions for switches")
+
+        erica = self.switchit_basedir()+'/erica'
+        if os.access(erica, os.X_OK):
+            self.progress(True, "Permission", "The file '%s' is executable" % erica)
+        else:
+            self.progress(False, "Permission", "The file '%s' does not have execution rights." % erica)
+
+    def install(self):
+        erica = self.switchit_basedir()+'/erica'
+        if os.access(erica, os.X_OK):
+            if os.file.path.isfile(self.switchit_basedir()+"/switchit/.couchapprc"):
+                os.chdir(self.switchit_basedir()+"/switchit")
+                try:
+                    code = subprocess.Popen([erica, "push"])
+                    if code == 0:
+                        self.progress(True, "Installed", "The website has been successfully installed!")
+                    else:
+                        self.progress(False, "Installed", "The website could not be installed", progress=0)
+                except OSError as e:
+                    if e.errno == os.errno.ENOENT:
+                        self.progress(False, "Installed", "The website could not be installed.", progress=0)
+            else:
+                self.progress(False, "Installed", "The .couchapprc file could not be found.", progress=0)

@@ -1,21 +1,37 @@
 from ConfigChecks import CheckCouchDB
 from ConfigChecks import BasicConfigChecks
+from ConfigChecks import CheckSwitchCode
+from ConfigChecks import CheckWiringPiConfig
 import subprocess
 
 prog_callback = None
 check_couchdb = None
+check_wiringpi = None
+check_switch = None
 
 
 def start_setup(progress_callback):
-    global prog_callback, check_couchdb
+    global prog_callback, check_couchdb, check_switch, check_wiringpi
     prog_callback = progress_callback
     if not check_couchdb:
         check_couchdb = CheckCouchDB(prog_callback)
+    if not check_switch:
+        check_switch = CheckSwitchCode(prog_callback)
+    if not check_wiringpi:
+        check_wiringpi = CheckWiringPiConfig(prog_callback)
+    # check/install couchdb
     if install_couchdb(check_couchdb):
+        # check if couchdb is up and running
         if check_couchdb.available():
+            # check if couchdb is correctly configured
             check_couchdb.configured()
         else:
             print("CouchDB is not available! start it!")
+    # check if wiringpi is installed
+    check_wiringpi.installed()
+    # check if executables have the correct permissions
+    check_switch.permissions()
+    check_switch.install()
 
 
 def install_couchdb(check):
