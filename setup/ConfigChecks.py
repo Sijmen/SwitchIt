@@ -151,7 +151,7 @@ class CheckCouchDB(BasicConfigChecks):
             if self.save_setting('httpd', 'bind_address', '0.0.0.0', session, force_write=True):
                 self.progress(True, part, "Successfully configured bind address")
             else:
-                self.progress(False, part, "Could not configure bind address", progress=0)
+                self.progress(False, part, "Could not configure bind address", completed=0)
         else:
             self.progress(True, part, "Successfully configured bind address")
 
@@ -278,10 +278,10 @@ class CheckWiringPiConfig(BasicConfigChecks):
         version_string = output.splitlines()[0].decode("ascii")
         version = version_string.split(":")[1].strip()
         if version:
-            self.progress(True, "Installed", "Wiring pi version %s is installed" % version, progress=100)
+            self.progress(True, "Installed", "Wiring pi version %s is installed" % version, completed=100)
             return False
         else:
-            self.progress(False, "Installed", "Wiring pi could not be found. Please install", progress=0)
+            self.progress(False, "Installed", "Wiring pi could not be found. Please install", completed=0)
             return True
 
 
@@ -334,9 +334,9 @@ class CheckSwitchCode(BasicConfigChecks):
                     if code == 0:
                         self.progress(True, "Installed", "The website has been successfully installed!")
                     else:
-                        self.progress(False, "Installed", "The website could not be installed", progress=0)
+                        self.progress(False, "Installed", "The website could not be installed", completed=0)
                 except OSError as e:
                     if e.errno == os.errno.ENOENT:
-                        self.progress(False, "Installed", "The website could not be installed.", progress=0)
+                        self.progress(False, "Installed", "The website could not be installed.", completed=0)
             else:
-                self.progress(False, "Installed", "The .couchapprc file could not be found.", progress=0)
+                self.progress(False, "Installed", "The .couchapprc file could not be found.", completed=0)
