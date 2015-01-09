@@ -25,13 +25,15 @@ def start_setup(progress_callback):
         if check_couchdb.available():
             # check if couchdb is correctly configured
             check_couchdb.configured()
+            # check if the permissions are correct for execution
+            check_switch.permissions()
+            # install switchit, requires couchdb to be available
+            check_switch.install()
         else:
             print("CouchDB is not available! start it!")
     # check if wiringpi is installed
     check_wiringpi.installed()
     # check if executables have the correct permissions
-    check_switch.permissions()
-    check_switch.install()
 
 
 def install_couchdb(check):

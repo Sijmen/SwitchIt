@@ -119,9 +119,13 @@ class CheckCouchDB(BasicConfigChecks):
         if not self.port:
             self.port = self.get_config("httpd", "port")
         if self.port and self.ip:
-            result = requests.get("%s" % self.get_url())
-            print(result.json())
-            return "version" in result.json()
+            try:
+                result = requests.get("%s" % self.get_url())
+                return "version" in result.json()
+            except Exception as e:
+                print(e)
+                self.progress(success=False, part="Available", message="Could not connect to CouchDB.", completed=0)
+                return False
         else:
             self.progress(success=False, part="Available", message="IP address or Port of Couchdb are not known!", completed=0)
             return False
@@ -273,16 +277,20 @@ class CheckWiringPiConfig(BasicConfigChecks):
         self.check_name = "wiringpi"
 
     def installed(self):
-        proc = subprocess.Popen(['gpio', '-v'], stdout=subprocess.PIPE)
-        output = proc.communicate()[0]
-        version_string = output.splitlines()[0].decode("ascii")
-        version = version_string.split(":")[1].strip()
-        if version:
-            self.progress(True, "Installed", "Wiring pi version %s is installed" % version, completed=100)
-            return False
-        else:
-            self.progress(False, "Installed", "Wiring pi could not be found. Please install", completed=0)
-            return True
+        try:
+            proc = subprocess.Popen(['gpio', '-v'], stdout=subprocess.PIPE)
+            output = proc.communicate()[0]
+            version_string = output.splitlines()[0].decode("ascii")
+            version = version_string.split(":")[1].strip()
+            if version:
+                self.progress(True, "Installed", "Wiring pi version %s is installed" % version, completed=100)
+                return False
+            else:
+                self.progress(False, "Installed", "Wiring pi version could not be found.", completed=0)
+                return True
+        except FileNotFoundError:
+            self.progress(False, "Installed", "Wiring pi could not be found. Please install.", completed=0)
+
 
 
 class CheckSwitchCode(BasicConfigChecks):
@@ -335,8 +343,8 @@ class CheckSwitchCode(BasicConfigChecks):
                         self.progress(True, "Installed", "The website has been successfully installed!")
                     else:
                         self.progress(False, "Installed", "The website could not be installed", completed=0)
-                except OSError as e:
-                    if e.errno == os.errno.ENOENT:
-                        self.progress(False, "Installed", "The website could not be installed.", completed=0)
+                except Exception:
+                    self.progress(False, "Installed", "The website could not be installed.", completed=0)
+                os.chdir(self.switchit_basedir()+"/setup")
             else:
                 self.progress(False, "Installed", "The .couchapprc file could not be found.", completed=0)

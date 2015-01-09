@@ -1,4 +1,4 @@
-angular.module('SwitchSetup', ['CouchDBSetup'])
+angular.module('SwitchSetup', ['CouchDBSetup', 'WiringPiSetup', 'SwitchItSetup'])
 .controller("SetupCtrl",function($scope, $http){
 	$scope.continue = function(){
 		$http.get("/?start=True&random="+Date.now());
