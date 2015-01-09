@@ -1,10 +1,9 @@
 #!/bin/bash
-sudo su
-apt-get update
-apt-get upgrade
+sudo apt-get update
+sudo apt-get upgrade
 echo "Installing dependencies, this may take a while."
-apt-get install git-core couchdb nodejs python3 python3-pip
-pip-3.2 install requests
+sudo apt-get install git-core couchdb nodejs python3 python3-pip
+sudo pip-3.2 install requests
 git clone git://git.drogon.net/wiringPi
 cd wiringPi
 ./build
@@ -13,8 +12,7 @@ git clone git://github.com/Sijmen/switchit.git
 cd switchit
 cd lights
 make rebuild
-chown root *.o && chmod =x *.o && chmod +s *.o
+sudo chown root *.o && chmod =x *.o && chmod +s *.o
 cd ..
-chmod a+x update install erica
-su pi
+chmod a+x update erica
 python3 setup/server.py
