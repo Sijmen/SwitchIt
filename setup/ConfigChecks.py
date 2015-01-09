@@ -275,8 +275,8 @@ class CheckWiringPiConfig(BasicConfigChecks):
     def installed(self):
         proc = subprocess.Popen(['gpio', '-v'], stdout=subprocess.PIPE)
         output = proc.communicate()[0]
-        version = output.splitlines()[0]
-        version = version.split(":")[1].strip()
+        version_string = output.splitlines()[0].decode("ascii")
+        version = version_string.split(":")[1].strip()
         if version:
             self.progress(True, "Installed", "Wiring pi version %s is installed" % version, progress=100)
             return False
