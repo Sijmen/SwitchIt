@@ -16,7 +16,7 @@ You will need a
 If you have the hardware, you can install SwitchIt in two ways.
 #### Automatic
 **NOTE:** The automatic install will attempt to reinstall WiringPi. If you do not wish to do this, follow the manual installation.
-
+**NOTE:** The automatic install has been tested on a raspbian image, released 24 December 2014. It will **not** work with ```yum``` or ```pacman``` package managers. 
 Copy and paste the following and the installation will start automatically:
 ```
 wget https://raw.githubusercontent.com/Sijmen/SwitchIt/master/install -O install && sh install
