@@ -15,7 +15,8 @@ You will need a
 ## I want it! How do I get started?
 If you have the hardware, you can install SwitchIt in two ways.
 #### Automatic
-NOTE: The automatic install will attempt to reinstall WiringPi. If you do not wish to do this, follow the manual installation.
+**NOTE:** The automatic install will attempt to reinstall WiringPi. If you do not wish to do this, follow the manual installation.
+
 Copy and paste the following and the installation will start automatically:
 ```
 wget https://raw.githubusercontent.com/Sijmen/SwitchIt/master/install -O install && sh install
