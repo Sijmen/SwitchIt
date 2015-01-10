@@ -1,18 +1,25 @@
 #!/bin/bash
+# update repository links
 sudo apt-get update
+# get latest version of all files
 sudo apt-get upgrade
 echo "Installing dependencies, this may take a while."
+# install dependencies
 sudo apt-get install git-core couchdb nodejs python3 python3-pip
+# install even more dependencies
 sudo pip-3.2 install requests
+# install final dependency
 git clone git://git.drogon.net/wiringPi
 cd wiringPi
 ./build
 cd ..
+# install actual program
 git clone git://github.com/Sijmen/switchit.git
-cd switchit
-cd lights
+cd switchit/lights
 make rebuild
-sudo chown root *.o && chmod =x *.o && chmod +s *.o
+sudo chown root *.o && sudo chmod =x *.o && sudo chmod +s *.o
 cd ..
 chmod a+x update erica
+
+# start automatic configuration.
 python3 setup/server.py

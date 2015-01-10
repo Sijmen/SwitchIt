@@ -22,6 +22,7 @@
         <h1 ng-hide="setup_started">Welcome!</h1>
         <h1 ng-show="setup_started">Thanks!</h1>
         <p ng-hide="setup_started" class="lead">You are about to install a great application for your Raspberry Pi!</p>
+        <p ng-hide="setup_started" class="lead">When you press the start button, everything will be automatically configured and checked. When finished, you can close the terminal that send you to this page.</p>
         <p ng-hide="setup_started"><a class="btn btn-lg btn-success" role="button" ng-click="start()">Start the installation!</a></p>
         <p class="lead text-left" ng-show="setup_started">
           You are installing a great application for your Raspberry Pi! The
@@ -74,9 +75,6 @@
               </form>
               <div ng-show="!login_status.success">{{login_status.message}}</div>
             </div>
-<!--             <div ng-show="login_status.success" ng-hide="continued || !data.Available.success">
-              <button type="submit" class="btn btn-default" ng-click="continue()">Continue installation</button>
-            </div> -->
             <p ng-show="data.default_configuration.message">
               <i ng-class="{'fa-check': data.default_configuration.success, 'text-success': data.default_configuration.success, 'fa-close': !data.default_configuration.success, 'text-danger': !data.default_configuration.success}" class="fa"></i>&nbsp;Default configuration <div class='text-muted text-indented'>{{data.default_configuration.message}}</div>
             </p>

@@ -27,9 +27,17 @@ def main():
             except:
                 pass
     if isLocalHost(myip):
-        print("The server has started on port %d. Please navigate to something like http://192.168.0.xyz:%d to start the setup process. Leave this window running!" % (portnr, portnr))
+        print(
+            """ The automatic configuration server has started on port %d.
+                Please navigate to something like http://192.168.0.xyz:%d to start the configuration process.
+                Leave this window running!
+            """ % (portnr, portnr))
     else:
-        print("The server has started on port %d. Please navigate to http://%s:%d in your browser to start the setup process. Leave this window running!" % (portnr, myip, portnr))
+        print(
+            """ The automatic configuration server has started on port %d.
+                Please navigate to http://%s:%d in your browser to start the configuration process.
+                Leave this window running!
+            """ % (portnr, myip, portnr))
     # setup address and server
     server_address = ('0.0.0.0', portnr)
     httpd = srv.HTTPServer(server_address, HTTPSetup.SetupHTTPRequestHandler)
