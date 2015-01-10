@@ -13,10 +13,13 @@ You will need a
 * Switches/sockets that can be remotely controlled with an RF remote. [Google](https://www.google.com/search?q=rf+controlled+socket)
 
 ## I want it! How do I get started?
-If you have the hardware, copy and paste the following and the installation will start automatically:
+If you have the hardware, you can install SwitchIt in two ways.
+#### Automatic
+NOTE: The automatic install will attempt to reinstall WiringPi. If you do not wish to do this, follow the manual installation.
+Copy and paste the following and the installation will start automatically:
 ```
 wget https://raw.githubusercontent.com/Sijmen/SwitchIt/master/install -O install && sh install
 ```
 Please follow the instructions on the screen.
-
+#### Manual
 If you do not like the automatic install, you can enter the commands from the ```install``` file yourself. It is however recommended to start the configuration server (the final step), which will configure CouchDB automatically.
