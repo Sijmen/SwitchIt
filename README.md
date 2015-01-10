@@ -18,3 +18,5 @@ If you have the hardware, copy and paste the following and the installation will
 wget https://raw.githubusercontent.com/Sijmen/SwitchIt/master/install -O install && sh install
 ```
 Please follow the instructions on the screen.
+
+If you do not like the automatic install, you can enter the commands from the ```install``` file yourself. It is however recommended to start the configuration server (the final step), which will configure CouchDB automatically.
