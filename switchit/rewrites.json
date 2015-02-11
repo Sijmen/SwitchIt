@@ -23,10 +23,6 @@
     "description": "Access to this design document"
   },
   {
-    "from": "/_nodejs",
-    "to": "../../../_nodejs/"
-  },
-  {
     "from": "_ddoc/*",
     "to": "*"
   },
