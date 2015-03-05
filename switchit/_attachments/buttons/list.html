@@ -5,8 +5,8 @@
       <h3>{{switch.value.doc.name}}</h3>
       <p class="muted">{{switch.value.doc.description}}</p>
       <p class="btn-group" ng-show="switch.value.doc.type == 'switch' || switch.value.doc.type == 'group'">
-        <a class="btn btn-large btn-success" ng-click="turnOn(switch.value)"><i class="icon-white icon-ok-circle"></i> On</a>
-        <a class="btn btn-large btn-info" ng-click="turnOff(switch.value)"><i class="icon-white icon-ban-circle"></i> Off</a>
+        <a class="btn btn-lg btn-success" ng-mousedown="turnOn(switch.value)"><i class="icon-white icon-ok"></i> On</a>
+        <a class="btn btn-lg btn-info" ng-mousedown="turnOff(switch.value)"><i class="icon-white icon-ban"></i> Off</a>
       </p>
     </div>
   </div>
