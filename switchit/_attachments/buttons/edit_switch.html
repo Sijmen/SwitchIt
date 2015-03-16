@@ -1,0 +1,43 @@
+<!-- <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12">
+  <form name="myForm" class="block block-padd form-horizontal">
+  -->
+
+    <!-- Set switch type -->
+    <!-- <div class="control-group form-group" ng-class="{'has-success': myForm.modelType.$dirty}">
+      <label  class="col-sm-4 control-label">Type </label>
+      <div class="col-sm-8">
+        <select class="form-control" ng-model="switchit.type" name="modelType" required disabled ng-options="key as value for (key , value) in types"></select>
+      </div>
+    </div>
+ -->
+
+    <!-- Select switch brand -->
+    <div class="control-group form-group" ng-class="{'has-success': myForm.modelType.$dirty}">
+      <label  class="col-sm-4 control-label">Brand </label>
+      <div class="col-sm-8">
+
+        <select class="form-control" ng-model="switchit.brand" name="modelType" required ng-options="key as value for (key , value) in models"></select>
+      </div>
+    </div>
+    <div ng-if="switchit.brand" ng-include="'buttons/switch_brands/'+switchit.brand+'.html'">
+
+    </div>
+
+    <div class="form-group" ng-class="{'has-success': myForm.description.$dirty}">
+      <label class="col-sm-4 control-label" for="description">Description:</label>
+      <div class="col-sm-8">
+        <textarea class="form-control" id="description" name="description" ng-model="switchit.description"></textarea>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <div class="btn-group" role="group">
+        <a href="#/" class="btn btn-info">Cancel</a>
+        <button ng-click="save()" ng-disabled="myForm.$invalid"
+              class="btn btn-primary">Save</button>
+        <button ng-click="destroy()"
+              ng-show="switchit._id && myForm.id.$pristine" class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+<!--   </form>
+</div>
