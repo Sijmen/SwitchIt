@@ -43,7 +43,6 @@ angular.module('switchit_basic_switch', ['CornerCouch'])
     $http({method:"POST",data:{ids:switchit.idlist,state:'off'}, url:'/_nodejs'});
   };
   $scope.setMood = function(switchit) {
-    console.log("test");
     $http({method:"POST",data:{ids:switchit.idlist_on,state:'on'}, url:'/_nodejs'});
     $http({method:"POST",data:{ids:switchit.idlist_off,state:'off'}, url:'/_nodejs'});
   };
