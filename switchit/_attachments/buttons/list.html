@@ -1,7 +1,11 @@
 <div class="row" ng-repeat="row in rows">
   <div class="col-sm-4 text-center" ng-repeat="switch in row | filter:search | orderBy:'value.doc.name'">
     <div class="block">
-      <div class="top_right"><a ng-click="showEdit(switch)"><i class="fa fa-cogs"></i></a></div>
+      <div class="top_right">
+        <a ng-click="showEdit(switch)" class="sit-edit">
+          <i class="fa fa-cogs"></i>
+        </a>
+      </div>
       <h3>{{switch.value.doc.name}}</h3>
       <p class="muted">{{switch.value.doc.description}}</p>
       <p class="btn-group btn-group-lg" role="group" ng-show="switch.value.doc.type != 'mood'">
