@@ -2,7 +2,8 @@
 {
   "_id":"huiskamer",
   "name":"Huiskamer",
-  "type":"action",
+  "brand":"action",
+  "type":"switch",
   "dip": 18,
   "channel":"B",
   "doctype":"switch"
@@ -11,7 +12,8 @@
 {
   "_id":"badkamer",
   "name":"Badkamer",
-  "type":"elro",
+  "brand":"elro",
+  "type":"switch",
   "code":5,
   "socket":"D",
   "doctype":"switch"
@@ -20,7 +22,8 @@
 {
   "_id":"muziek",
   "name":"Muziek",
-  "type":"kaku",
+  "brand":"kaku",
+  "type":"switch",
   "address":"D",
   "device":10,
   "doctype":"switch"
@@ -29,7 +32,8 @@
 {
   "_id":"tv",
   "name":"TV",
-  "type": "blokker",
+  "brand": "blokker",
+  "type":"switch",
   "device":7,
   "doctype":"switch"
 }
@@ -43,12 +47,12 @@
   "on":["tv","muziek"]
 }
 
-//Database entries for group switches
+//Database entries for mood switches
 {
   "_id":"media",
   "name":"Entertainment",
   "doctype":"switch",
-  "type":"group",
+  "type":"mood",
   "on":["tv","muziek"],
   "off":["huiskamer","badkamer"]
 }
