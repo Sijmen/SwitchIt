@@ -1,0 +1,8 @@
+{
+  "env": {
+    "default": {
+      "name": "switchit",
+      "db": "http://localhost:5984/switchit"
+    }
+  }
+}
