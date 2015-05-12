@@ -1,5 +1,6 @@
 angular.module('switchit_angular', ['ngRoute', 'switchit_switch'])
-.config(function($routeProvider) {
+.config(function($routeProvider, $httpProvider) {
+  $httpProvider.defaults.headers.common['Accept'] = 'text/html';
   $routeProvider
     .when('/', {
       controller:'ListCtrl',
@@ -20,4 +21,4 @@ angular.module('switchit_angular', ['ngRoute', 'switchit_switch'])
     .otherwise({
       redirectTo:'/'
     });
-})
+});
