@@ -1,0 +1,18 @@
+<div class="kaku-data" ng-if="switchit.brand == 'kaku'">
+  <div class="control-group form-group" ng-class="{'has-error': myForm.device.$invalid && myForm.device.$dirty, 'has-success': myForm.device.$valid && myForm.device.$dirty}">
+    <label class="col-sm-4 control-label" for="device" >Device</label>
+    <div class="col-sm-8">
+      <input class="form-control" type="number" ng-model="switchit.device" id="device" name="device" max="18" min="0" required>
+    </div>
+    <span ng-show="myForm.device.$error.required && myForm.device.$dirty" class="col-sm-12 help-inline">Required</span>
+    <span ng-show="(myForm.device.$error.max || myForm.device.$error.max)" class="col-sm-12 help-inline">Not between 0 and 18</span>
+  </div>
+  <div class="control-group form-group" ng-class="{'has-error': myForm.address.$invalid && myForm.address.$dirty, 'has-success': myForm.address.$valid && myForm.address.$dirty}">
+    <label class="col-sm-4 control-label" for="address" >Address</label>
+    <div class="col-sm-8">
+      <input class="form-control" id="address" name="address" size="1" ng-model="switchit.address" type="text" ng-pattern="/[A-Pa-p]/" required>
+    </div>
+    <span class="help-inline col-sm-12" ng-show="myForm.address.$error.required && myForm.address.$dirty" >Required</span>
+    <span class="help-inline col-sm-12" ng-show="myForm.address.$error.pattern  && myForm.address.$dirty" >Not between A and P</span>
+  </div>
+</div>

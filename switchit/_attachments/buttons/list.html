@@ -1,12 +1,28 @@
 <div class="row" ng-repeat="row in rows">
   <div class="col-sm-4 text-center" ng-repeat="switch in row | filter:search | orderBy:'value.doc.name'">
     <div class="block">
-      <div class="top_right"><a href="#/edit/{{switch.id}}"><i class="fa fa-cogs"></i></a></div>
+      <div class="top_right">
+        <a ng-click="showEdit(switch)" class="sit-edit">
+          <i class="fa fa-cogs"></i>
+        </a>
+      </div>
       <h3>{{switch.value.doc.name}}</h3>
       <p class="muted">{{switch.value.doc.description}}</p>
       <p class="btn-group" ng-show="switch.value.doc.type == 'switch' || switch.value.doc.type == 'group'">
         <a class="btn btn-lg btn-success" ng-mousedown="turnOn(switch.value)"><i class="icon-white icon-ok"></i> On</a>
         <a class="btn btn-lg btn-info" ng-mousedown="turnOff(switch.value)"><i class="icon-white icon-ban"></i> Off</a>
+      <p class="btn-group btn-group-lg" role="group" ng-show="switch.value.doc.type != 'mood'">
+        <a class="btn btn-success" ng-click="turnOn(switch.value)">
+          <i class="fa fa-lightbulb-o"></i> On
+        </a>
+        <a class="btn btn-info" ng-click="turnOff(switch.value)">
+            <i class="fa fa-ban"></i> Off
+        </a>
+      </p>
+      <p class="btn-group btn-group-lg" role="group" ng-show="switch.value.doc.type == 'mood'">
+        <a class="btn btn-success" ng-click="setMood(switch.value)">
+            <i class="fa fa-lightbulb-o"></i> Set mood
+        </a>
       </p>
     </div>
   </div>

@@ -1,0 +1,14 @@
+<div class="action-data" ng-if="switchit.brand == 'action'">
+  <div class="control-group form-group" ng-class="{'has-error': myForm.dip.$invalid && myForm.dip.$dirty}">
+    <label class="col-sm-4 control-label" for="dip" >DIP</label>
+    <div class="col-sm-8">
+      <input class="form-control" type="number" ng-model="switchit.dip" id="dip" name="dip">
+    </div>
+  </div>
+  <div class="control-group form-group" ng-class="{'has-error': myForm.channel.$invalid && myForm.channel.$dirty}">
+    <label class="col-sm-4 control-label" for="channel" >Channel</label>
+    <div class="col-sm-8">
+      <input class="form-control" id="channel" name="channel" size="1" ng-model="switchit.channel" type="text">
+    </div>
+  </div>
+</div>
