@@ -163,7 +163,7 @@ class CheckCouchDB(BasicConfigChecks):
         success = True
         messages = []
         # assuming the nodejs server runs locally. Could be a remote location though
-        if self.save_setting('http_global_handlers', '_nodejs', '{couch_httpd_proxy, handle_proxy_req, <<"http://127.0.0.1:8000">>}', session):
+        if self.save_setting('httpd_global_handlers', '_nodejs', '{couch_httpd_proxy, handle_proxy_req, <<"http://127.0.0.1:8000">>}', session):
             success = success and True
             messages.append({"message": "Successfully configured global proxy handler for nodejs server", "success": True})
         else:
