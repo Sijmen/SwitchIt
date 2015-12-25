@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "Upgrading Raspberry system files, this may take a while."
 # update repository links
 sudo apt-get update
 # get latest version of all files
