@@ -1,0 +1,3 @@
+[submodule "couchapp"]
+	path = couchapp
+	url = git@github.com:couchapp/couchapp.git
