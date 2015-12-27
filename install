@@ -21,7 +21,7 @@ cd ..
 
 echo "Clone and install SwitchIt"
 # install actual program
-git clone git://github.com/elwin1234/switchit.git
+git clone git://github.com/Sijmen/switchit.git
 cd switchit/lights
 make rebuild
 sudo chown root *.o && sudo chmod =x *.o && sudo chmod +s *.o
