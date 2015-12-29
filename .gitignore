@@ -1,3 +1,4 @@
+.idea
 *.min.js
 *.min.css
 venv*

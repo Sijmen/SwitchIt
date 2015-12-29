@@ -163,7 +163,7 @@ class CheckCouchDB(BasicConfigChecks):
         success = True
         messages = []
         # assuming the nodejs server runs locally. Could be a remote location though
-        if self.save_setting('http_global_handlers', '_nodejs', '{couch_httpd_proxy, handle_proxy_req, <<"http://127.0.0.1:8000">>}', session):
+        if self.save_setting('httpd_global_handlers', '_nodejs', '{couch_httpd_proxy, handle_proxy_req, <<"http://127.0.0.1:8000">>}', session):
             success = success and True
             messages.append({"message": "Successfully configured global proxy handler for nodejs server", "success": True})
         else:
@@ -325,25 +325,25 @@ class CheckSwitchCode(BasicConfigChecks):
         else:
             self.progress(False, "Permission", "Incorrect file permissions for switches")
 
-        erica = self.switchit_basedir()+'/erica'
-        if os.access(erica, os.X_OK):
-            self.progress(True, "Permission", "The file '%s' is executable" % erica)
-        else:
-            self.progress(False, "Permission", "The file '%s' does not have execution rights." % erica)
+        # erica = self.switchit_basedir()+'/erica'
+        # if os.access(erica, os.X_OK):
+        #     self.progress(True, "Permission", "The file '%s' is executable" % erica)
+        # else:
+        #     self.progress(False, "Permission", "The file '%s' does not have execution rights." % erica)
 
     def install(self):
-        erica = self.switchit_basedir()+'/erica'
-        if os.access(erica, os.X_OK):
-            if os.path.isfile(self.switchit_basedir()+"/switchit/.couchapprc"):
-                os.chdir(self.switchit_basedir()+"/switchit")
-                try:
-                    code = subprocess.call([erica, "push"])
-                    if code == 0:
-                        self.progress(True, "Installed", "The website has been successfully installed!")
-                    else:
-                        self.progress(False, "Installed", "The website could not be installed", completed=0)
-                except Exception:
-                    self.progress(False, "Installed", "The website could not be installed.", completed=0)
-                os.chdir(self.switchit_basedir()+"/setup")
-            else:
-                self.progress(False, "Installed", "The .couchapprc file could not be found.", completed=0)
+        # erica = self.switchit_basedir()+'/erica'
+        # if os.access(erica, os.X_OK):
+        if os.path.isfile(self.switchit_basedir()+"/switchit/.couchapprc"):
+            os.chdir(self.switchit_basedir()+"/switchit")
+            try:
+                code = subprocess.call(["couchapp", "push"])
+                if code == 0:
+                    self.progress(True, "Installed", "The website has been successfully installed!")
+                else:
+                    self.progress(False, "Installed", "The website could not be installed", completed=0)
+            except Exception:
+                self.progress(False, "Installed", "The website could not be installed.", completed=0)
+            os.chdir(self.switchit_basedir()+"/setup")
+        else:
+            self.progress(False, "Installed", "The .couchapprc file could not be found.", completed=0)
