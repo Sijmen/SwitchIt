@@ -59,9 +59,20 @@ function vGetRequest(aKeys,sState){
       console.log(sBody);
       oSwitches = JSON.parse(sBody);
       aFinalCommands = [];
-      for(var index in oSwitches.rows){
-        aFinalCommands.push(sControlSwitch(oSwitches.rows[index].doc,sState));
+
+      // repeat 3 times to increase chance that all switches are actually switched
+      // since most of the RF switches do not support bidirectional communication there are
+      // not many other possibilities to increase reliability of switch behaviour
+      for (var i = 0; i <= 2; i++) {
+        for (var index in oSwitches.rows) {
+          if (oSwitches.rows[index].doc.delay !== undefined && (index > 0 || i > 0)) {
+            aFinalCommands.push('sleep ' + parseInt(oSwitches.rows[index].doc.delay) / 1000);
+          }
+
+          aFinalCommands.push(sControlSwitch(oSwitches.rows[index].doc, sState));
+        }
       }
+
       vSendCommand(aFinalCommands.join(' && '));
     });
   });
