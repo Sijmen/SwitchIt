@@ -2,12 +2,11 @@ var http = require('http');
 var port = 8000;
 var sys = require('sys');
 var exec = require('child_process').exec;
-var child;
 var url = require('url');
 var ip = '0.0.0.0';
 
 http.createServer(function (req, res) {
-    if(req.method == 'POST'){
+    if (req.method == 'POST') {
       var body = '';
       req.on('data',function(data){
         console.log(data);
@@ -59,9 +58,35 @@ function vGetRequest(aKeys,sState){
       console.log(sBody);
       oSwitches = JSON.parse(sBody);
       aFinalCommands = [];
-      for(var index in oSwitches.rows){
-        aFinalCommands.push(sControlSwitch(oSwitches.rows[index].doc,sState));
+
+      // repeat 4 times to increase chance that all switches are actually switched
+      // since most of the RF switches do not support bidirectional communication there are
+      // not many other possibilities to increase reliability of switch behaviour
+      var tries = 4;
+      for (var i = 0; i < tries; i++) {
+        for (var index in oSwitches.rows) {
+          // delay
+          if (oSwitches.rows[index].doc.delay !== undefined && (index > 0 || i > 0)) {
+            aFinalCommands.push('sleep ' + parseInt(oSwitches.rows[index].doc.delay) / 1000);
+          }
+
+          // off before on
+          if (oSwitches.rows[index].doc.offBeforeOn && i < tries/2 && sState == 'on') {
+            aFinalCommands.push(sControlSwitch(oSwitches.rows[index].doc, 'off'));
+          }
+
+          // on before off
+          if (oSwitches.rows[index].doc.onBeforeOff && i < tries/2 && sState == 'off') {
+            aFinalCommands.push(sControlSwitch(oSwitches.rows[index].doc, 'on'));
+          }
+
+          // actual action
+          if (i >= tries/2 || (sState == 'off' && !oSwitches.rows[index].doc.onBeforeOff) || (sState == 'on' && !oSwitches.rows[index].doc.offBeforeOn)) {
+            aFinalCommands.push(sControlSwitch(oSwitches.rows[index].doc, sState));
+          }
+        }
       }
+
       vSendCommand(aFinalCommands.join(' && '));
     });
   });

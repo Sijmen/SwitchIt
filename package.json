@@ -1,0 +1,24 @@
+{
+  "name": "switchit",
+  "version": "0.0.0",
+  "description": "This project aims to automate your home. Well, at least your power sockets. You will need to buy the hardware yourself, but the software to control it is available here. I'm based in the Netherlands and thus all brands supported right now are Dutch. But these brands are probably just rebrands of the product that comes out of a Chinese factory so it might work with your switch as well.",
+  "main": "server.bu.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/elwin1234/switchit.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elwin1234/switchit/issues"
+  },
+  "dependencies": {
+    "request": "^2.85.0",
+    "ssh-exec": "^2.0.0",
+    "ws": "^5.1.0"
+  }
+}
